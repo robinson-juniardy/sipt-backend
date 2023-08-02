@@ -15,11 +15,11 @@ export const databaseProviders = [
     useFactory: async () => {
       const sequelize = new Sequelize({
         dialect: 'mysql',
-        host: 'localhost',
+        host: '103.123.62.41',
         port: 3306,
-        username: 'root',
-        password: '',
-        database: 'sipt',
+        username: 'sipitamy_admin',
+        password: '1nd0n3s1aA',
+        database: 'sipitamy_sipt',
       });
       sequelize.addModels([
         Users,
