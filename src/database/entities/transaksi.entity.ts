@@ -10,6 +10,7 @@ import {
   AutoIncrement,
   BelongsToMany,
   HasMany,
+  HasOne,
 } from 'sequelize-typescript';
 import { MasterPegawai } from './master.entity';
 import { DetailCuti } from './detail.entity';
@@ -19,6 +20,7 @@ import { DetailCuti } from './detail.entity';
 })
 export class TransCuti extends Model {
   @PrimaryKey
+  @AutoIncrement
   @Column
   id_cuti: number;
 
@@ -27,7 +29,7 @@ export class TransCuti extends Model {
 
   @ForeignKey(() => MasterPegawai)
   @Column
-  id_pegawai: string;
+  id_pegawai: number;
 
   @BelongsTo(() => MasterPegawai)
   pegawai: MasterPegawai;
@@ -43,6 +45,27 @@ export class TransCuti extends Model {
 
   @Column
   tgl_mulai: Date;
+
+  @ForeignKey(() => MasterPegawai)
+  @Column
+  id_pemberi_verif: number
+
+  @BelongsTo(() => MasterPegawai, {foreignKey: 'id_pemberi_verif'})
+  pemberi_verif: MasterPegawai
+
+  @ForeignKey(() => MasterPegawai)
+  @Column
+  id_pemaraf: number
+
+  @BelongsTo(() => MasterPegawai, {foreignKey: 'id_pemaraf'})
+  pemaraf: MasterPegawai
+
+  @ForeignKey(() => MasterPegawai)
+  @Column
+  id_penanda_tangan: number
+
+  @BelongsTo(() => MasterPegawai, {foreignKey: 'id_penanda_tangan'})
+  penanda_tangan: MasterPegawai
 
   @Column
   tgl_selesai: Date;

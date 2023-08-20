@@ -28,6 +28,21 @@ export class TransaksiController {
     return await this.transaksiService.GetAllCuti().then((data) => data);
   }
 
+  @Get('/pengajuan-cuti/verifikasi/:verif_id')
+  async GetPengajuanCutiByVerifId(@Param('verif_id') verif_id: number) {
+    return await this.transaksiService.GetAllCutiByVerifId(verif_id).then((data) => data);
+  }
+
+  @Get('/pengajuan-cuti/pemaraf/:paraf_id')
+  async GetPengajuanCutiByParafId(@Param('paraf_id') id: number) {
+    return await this.transaksiService.GetAllCutiByParafId(id).then((data) => data);
+  }
+
+  @Get('/pengajuan-cuti/ttd/:ttd_id')
+  async GetPengajuanCutiByTtdId(@Param('ttd_id') id: number) {
+    return await this.transaksiService.GetAllCutiByTtdId(id).then((data) => data);
+  }
+
   @Get('/pengajuan-cuti/:id_pegawai')
   async GetPengajuanCutiByIdPegawai(@Param('id_pegawai') id_pegawai: number) {
     return this.transaksiService

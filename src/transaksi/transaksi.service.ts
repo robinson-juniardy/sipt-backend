@@ -6,6 +6,7 @@ import {
   UploadEkitaDto,
 } from './transaksi.dto';
 import { TransEkita } from 'src/database/entities/ekita.entity';
+import {DetailCuti} from "../database/entities/detail.entity";
 
 @Injectable()
 export class TransaksiService {
@@ -17,8 +18,45 @@ export class TransaksiService {
   async GetAllCuti(): Promise<TransCuti[]> {
     return this.transCutiRepo.findAll<TransCuti>({
       include: {
+        all: true
+      },
+      order: [['id_cuti', "DESC"]]
+    });
+  }
+
+  async GetAllCutiByVerifId(id: number): Promise<TransCuti[]> {
+    return this.transCutiRepo.findAll<TransCuti>({
+      include: {
         all: true,
       },
+      where: {
+        id_pemberi_verif: id
+      },
+      order: [['id_cuti', "DESC"]]
+    });
+  }
+
+  async GetAllCutiByParafId(id: number): Promise<TransCuti[]> {
+    return this.transCutiRepo.findAll<TransCuti>({
+      include: {
+        all: true,
+      },
+      where: {
+        id_pemaraf: id
+      },
+      order: [['id_cuti', "DESC"]]
+    });
+  }
+
+  async GetAllCutiByTtdId(id: number): Promise<TransCuti[]> {
+    return this.transCutiRepo.findAll<TransCuti>({
+      include: {
+        all: true,
+      },
+      where: {
+        id_penanda_tangan: id
+      },
+      order: [['id_cuti', "DESC"]]
     });
   }
 
@@ -30,6 +68,9 @@ export class TransaksiService {
       alamat_selama_cuti: params.alamat,
       durasi: params.durasi,
       tgl_mulai: new Date(params.tgl_mulai),
+      id_pemberi_verif: params.id_pemberi_verifikasi,
+      id_pemaraf: params.id_pemaraf,
+      id_penanda_tangan: params.id_penanda_tangan,
       tgl_selesai: params.tgl_selesai,
       status_dokumen: 0,
       hasil_approval: 0,
@@ -42,6 +83,7 @@ export class TransaksiService {
       where: {
         id_pegawai: params,
       },
+      order: [['id_cuti', "DESC"]]
     });
   }
 

@@ -7,7 +7,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
     credentials: true,
-    origin: ['https://sipita.my.id'],
+    origin: ['https://sipita.my.id', 'http://localhost:3000'],
   });
   await app.listen(3333);
 }

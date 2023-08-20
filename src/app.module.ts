@@ -6,6 +6,7 @@ import { MasterModule } from './master/master.module';
 import { TransaksiModule } from './transaksi/transaksi.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { FilemanagerModule } from './filemanager/filemanager.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { join } from 'path';
     UsersModule,
     MasterModule,
     TransaksiModule,
+    FilemanagerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

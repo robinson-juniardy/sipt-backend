@@ -19,6 +19,14 @@ export class CreateCutiDto {
   tgl_selesai: string;
 
   @IsNotEmpty()
+  id_pemberi_verifikasi: number
+
+  id_pemaraf?: number
+
+  @IsNotEmpty()
+  id_penanda_tangan: number
+
+  @IsNotEmpty()
   @IsPositive()
   durasi: string;
 
